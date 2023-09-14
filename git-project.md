@@ -70,6 +70,6 @@ This leads us to the three main sections of a Git project:
 - **Staging Area** 📦: Where you stage changes before committing.
 - **Git Directory** 🗄️: The local database where committed changes are stored.
 
-
+![git workflow](./images/git-project-1.png)
 
 📝 Remembering these states and commands is crucial for understanding Git's workflow and version control process.
