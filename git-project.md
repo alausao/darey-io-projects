@@ -73,3 +73,31 @@ This leads us to the three main sections of a Git project:
 ![git workflow](./images/git-project-1.png)
 
 📝 Remembering these states and commands is crucial for understanding Git's workflow and version control process.
+
+## Basic Git Workflow
+
+1. **Initialization**: Create a new Git repository or clone an existing one.
+   ```bash
+   git init  # Initialize a new repository
+   git clone <repository-url>  # Clone an existing repository
+   ```
+
+2. **Add and Commit**: Stage changes and commit them to the repository.
+   ```bash
+   git add <file>  # Stage a file for commit
+   git commit -m "Commit message"  # Commit staged changes
+   ```
+
+3. **Branching and Merging**:
+   - Create a new branch: `git branch <branch-name>`
+   - Switch to a branch: `git checkout <branch-name>`
+   - Merge changes from one branch into another: `git merge <source-branch>`
+
+4. **Remote Repositories**:
+   - Add a remote: `git remote add <name> <repository-url>`
+   - Pull changes from a remote: `git pull <remote> <branch>`
+   - Push changes to a remote: `git push <remote> <branch>`
+
+5. **History and Logs**:
+   - View commit history: `git log`
+   - View differences between commits: `git diff <commit1> <commit2>`
