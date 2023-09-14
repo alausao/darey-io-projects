@@ -101,3 +101,14 @@ This leads us to the three main sections of a Git project:
 5. **History and Logs**:
    - View commit history: `git log`
    - View differences between commits: `git diff <commit1> <commit2>`
+
+**💡 Side Hustle Task 1 ⏱️:** 
+
+### Task: Create and Initialize a Folder
+
+Create a Folder on your local system and do the following:
+- Create a folder with the name `project-1`
+- Open the folder with Gitbash/Terminal/iterm and run `git init`
+- Create a file `gitfile-1.txt` and run `git status`
+- Create and switch to a new branch using `git checkout -b <branch_name>`
+
