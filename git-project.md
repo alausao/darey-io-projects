@@ -9,7 +9,7 @@ In this project we will begin by explaining some background on version control t
 - Must have created a GitHub/GitLab Account.
 - If you're running Linux you can install git using the following options:
 
-```
+```bash
 sudo apt install -y git # Ubuntu/Debian Linux
 
 sudo yum install -y git # CentOS/Amazon Linux/RedHat
