@@ -112,4 +112,22 @@ Create a Folder on your local system and do the following:
 - Create a file `gitfile-1.txt` and run `git status`
 - Create and switch to a new branch using `git checkout -b <branch_name>`
 
+## First-Time Git Setup
+
+Now that you have Git on your system, you'll want to do a few things to customize your Git environment. This setup process should be done only once on any given computer, and the configurations will persist between upgrades. You can also modify these settings at any time by running the appropriate commands.
+
+Git provides a tool called `git config` that allows you to manage configuration variables controlling various aspects of Git's behavior. These variables can be stored in three different places:
+
+1. System-level configuration: Applies to all users on the system.
+2. User-level configuration: Applies to your specific user account.
+3. Repository-level configuration: Applies only to a particular Git repository.
+
+### Setting Your Identity
+
+The first thing you should do after installing Git is to set your identity. This information will be associated with your commits.
+
+```bash
+   git config --global user.name "John Doe"
+   git config --global user.email johndoe@example.com
+```
 
