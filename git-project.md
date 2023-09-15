@@ -422,7 +422,7 @@ GitHub allows you to securely access your repositories and interact with Git usi
 
    Replace `id_ed25519` with the filename of your SSH key if it's different.
 
-## Step 2: Copy the Public Key
+### Step 2: Copy the Public Key
 
 1. Display the public key using:
 
@@ -432,7 +432,7 @@ GitHub allows you to securely access your repositories and interact with Git usi
 
 2. Copy the entire public key, including `ssh-ed25519` and your email address.
 
-## Step 3: Add SSH Key to GitHub
+### Step 3: Add SSH Key to GitHub
 
 1. Open your web browser and go to [GitHub](https://github.com/).
 
@@ -450,11 +450,11 @@ GitHub allows you to securely access your repositories and interact with Git usi
 
 8. Click the "Add SSH key" button.
 
-## Step 4: Confirm the Addition
+### Step 4: Confirm the Addition
 
 GitHub will ask you to confirm the action by entering your GitHub password. Once confirmed, your SSH key will be added to your account.
 
-## Step 5: Test Your SSH Connection
+### Step 5: Test Your SSH Connection
 
 To ensure your SSH key is properly set up, you can test the connection by running:
 
