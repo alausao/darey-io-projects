@@ -465,3 +465,141 @@ ssh -T git@github.com
 You should receive a message like "Hi username! You've successfully authenticated...".
 
 Congratulations! You've successfully added an SSH key to your GitHub account, allowing you to securely interact with GitHub repositories using SSH.
+
+## Pushing to a Git remote Repo
+
+Before you can push changes to a Git repository, you should have made some changes to your local repository, such as creating or modifying files, and committing those changes. If you haven't already made changes and committed them, do so using these commands:
+
+**Step 1: Make Changes to Your Local Repository**
+
+1. Create or edit files in your project directory.
+
+2. Stage the changes for commit using `git add`:
+
+    ```bash
+    git add <file1> <file2> ...
+    ```
+
+    Replace `<file1>`, `<file2>`, etc., with the names of the files you want to stage. You can also use `.` to stage all changes.
+
+3. Commit the changes with a meaningful commit message:
+
+    ```bash
+    git commit -m "Your commit message here"
+    ```
+
+**Step 2: Verify Your Remote**
+
+Ensure that your local Git repository is connected to a remote repository. You can check your remote configurations with:
+
+```bash
+git remote -v
+```
+
+If you don't see any remote listed, you need to set up a remote. Typically, you would do this when you clone a repository or when a create a new repo on github. If you need to add a remote, use:
+
+```bash
+git remote add origin <remote_repository_url>
+```
+
+Replace `<remote_repository_url>` with the URL of the remote repository.
+
+**Step 3: Push Changes to the Remote Repository**
+
+Now that you've made changes locally and have a remote repository configured, you can push your changes to it:
+
+```bash
+git push origin <branch_name>
+```
+
+- `<branch_name>`: Replace this with the name of the branch you want to push. For example, `main` or `master`.
+
+If you're pushing the branch for the first time, you might need to set the upstream branch using the `-u` flag:
+
+```bash
+git push -u origin <branch_name>
+```
+
+This command pushes your local commits to the specified branch on the remote repository. If you've set everything up correctly, the changes will be uploaded to the remote repository.
+
+**Step 4: Authenticate (if required)**
+
+If your remote repository requires authentication (e.g., entering your username and password or a token or ssh), your Git client will prompt you for this information.
+
+**Step 5: Verify the Push**
+
+After pushing, you can verify that the changes are now on the remote repository by visiting the repository's web interface or using the following command to see the remote branches:
+
+```bash
+git remote show origin
+```
+
+This command will display information about your remote, including the branches available there.
+
+That's it! You've successfully pushed your changes to a Git repository. Other collaborators can now fetch these changes and work with them.
+
+**💭 Side Hustle Task 3 ⏰:** 
+
+# Task: Git Repository Setup, Branching, and Push
+
+## Objective
+The objective of this task is to demonstrate your understanding of creating a Git repository, inserting files, creating a new branch, and pushing changes to that branch.
+
+## Prerequisites
+Before starting this task, make sure you have the following set up:
+- Git installed on your local machine.
+
+## Instructions
+
+### Step 1: Create a New Git Repository
+1. Create a new Git repository on your preferred Git hosting platform (e.g., GitHub, GitLab, Bitbucket) if you don't already have one.
+
+### Step 2: Clone the Repository (if not already cloned)
+2. Clone the repository to your local machine using the repository's SSH URL:
+   ```shell
+   git clone git@github.com:yourusername/your-repo.git
+   ```
+   Replace `yourusername` with your actual username and `your-repo` with the name of your repository.
+
+### Step 3: Insert Files
+3. Add some files to your repository. You can create new files or use existing ones.
+
+### Step 4: Create a New Branch
+4. Create a new Git branch with the following naming convention:
+   ```
+   git branch feature/yourname-task-branch
+   ```
+   Replace `yourname` with your actual name or username.
+
+### Step 5: Switch to the New Branch
+5. Switch to the newly created branch:
+   ```shell
+   git checkout feature/yourname-task-branch
+   ```
+
+### Step 6: Make Changes
+6. Make changes to the files within this branch.
+
+### Step 7: Commit Your Changes
+7. Use the following Git commands to commit your changes:
+   ```shell
+   git add .
+   git commit -m "Add changes to feature branch"
+   ```
+
+### Step 8: Push Your Branch
+8. Push your newly created branch and changes to the remote repository:
+   ```shell
+   git push origin feature/yourname-task-branch
+   ```
+
+### Step 9: Verify Your Branch and Changes
+9. Check on the remote repository (e.g., on GitHub, GitLab) to ensure that your branch and changes have been successfully pushed.
+
+## Evaluation
+You will be evaluated based on the following criteria:
+- Successful creation of a new Git repository.
+- Properly adding files to the repository.
+- Successful creation of a new branch with the correct naming convention.
+- Properly committing and pushing changes to the remote repository.
+- Verification that your branch and changes appear on the remote repository.
