@@ -223,3 +223,69 @@ $ cd C:/Users/user/my_project
 $ git init
 ```
 This creates a new subdirectory named ``.git`` that contains all of your necessary repository files — a Git repository skeleton.
+
+### Cloning an Existing Repository
+
+If you want to get a copy of an existing Git repository — for example, a project you’d like to contribute to — the command you need is ``git clone``
+
+You clone a repository with ``git clone <url>``. For example, if you want to clone a dareyio assignment repo called Linux_Project, you can do so like this:
+
+```bash
+git clone https://github.com/dareyio/Linux_Project
+```
+
+That creates a directory named ``Linux_Project`` on your local machine, initializes a ``.git`` directory inside it, pulls down all the data for that repository, and checks out a working copy of the latest version. If you go into the new ``Linux_Project`` directory that was just created, you’ll see the project files in there, ready to be worked on or used.
+
+If you want to clone the repository into a directory named something other than ``Linux_Project``, you can specify the new directory name as an additional argument:
+
+```bash
+git clone https://github.com/dareyio/Linux_Project mylinux_project
+```
+
+The above 👆 command does the same thing as the previous one, but the target directory is called ``mylinux_project``
+
+**🤔 Side Hustle Task 2 ⌛️:** 
+
+### Git Task: Create, Commit, and Clone
+
+### Objective
+
+Practice the basic Git workflow by creating a Git repository, committing changes, and cloning the repository to your local machine.
+
+### Task Steps
+
+1. **Create a Git Repository**
+
+   - Open your terminal or Git Bash.
+   - Navigate to the directory where you want to create your Git repository.
+   - Run the following command to initialize a new Git repository:
+
+     ```shell
+     git init my-first-repo
+     ```
+
+2. **Add a File and Commit Changes**
+
+   - Inside the "my-first-repo" directory, create a new text file, e.g., "hello.txt."
+   - Add some text to the "hello.txt" file.
+   - Run the following commands to commit your changes:
+
+     ```shell
+     git add hello.txt
+     git commit -m "Add a greeting message"
+     ```
+
+3. **Create a Remote Repository (Optional)**
+
+   - If you want to practice with a remote repository (e.g., on GitHub or GitLab), create one now and note the repository URL.
+
+4. **Clone the Repository**
+
+   - Navigate to the directory where you want to clone the repository (outside of "my-first-repo").
+   - Run the following command to clone the repository:
+
+     ```shell
+     git clone <repository-url> my-cloned-repo
+     ```
+   - Replace `<repository-url>` with the URL of the remote repository you created.
+   - This will create a local copy of the repository named "my-cloned-repo."
