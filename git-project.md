@@ -540,7 +540,7 @@ That's it! You've successfully pushed your changes to a Git repository. Other co
 
 **💭 Side Hustle Task 3 ⏰:** 
 
-# Task: Git Repository Setup, Branching, and Push
+## Task: Git Repository Setup, Branching, and Push
 
 ## Objective
 The objective of this task is to demonstrate your understanding of creating a Git repository, inserting files, creating a new branch, and pushing changes to that branch.
