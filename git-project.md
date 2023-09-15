@@ -289,3 +289,104 @@ Practice the basic Git workflow by creating a Git repository, committing changes
      ```
    - Replace `<repository-url>` with the URL of the remote repository you created.
    - This will create a local copy of the repository named "my-cloned-repo."
+
+## Git Branching
+
+Git branching is a fundamental concept in Git that allows developers to work on different features or fixes in parallel without interfering with each other. Branches provide isolation and a structured way to manage code changes in a Git repository.
+
+### Key Concepts
+
+### 1. **Master Branch**
+
+- The `master` branch is the default and primary branch in a Git repository.
+- It typically represents the stable and production-ready version of the code.
+- Avoid making direct changes to the `master` branch to maintain code stability.
+
+### 2. **Creating a Branch**
+
+- To create a new branch, use the following command:
+
+  ```shell
+  git branch <branch-name>
+  ```
+
+- To switch to the new branch, use:
+
+  ```shell
+  git checkout <branch-name>
+  ```
+
+- Alternatively, you can create and switch to a new branch in one step:
+
+  ```shell
+  git checkout -b <branch-name>
+  ```
+
+### 3. **Working on a Branch**
+
+- When you're on a branch, any changes you make are isolated to that branch.
+- You can commit your changes on the branch as you work on new features or bug fixes.
+
+### 4. **Merging Branches**
+
+- Merging combines changes from one branch (the source) into another (the target).
+- To merge a branch into `master`, for example, you would do the following:
+
+  ```shell
+  git checkout master # Switching back to the master branch
+  git merge <source-branch>
+  ```
+
+### 5. **Branch Visualization**
+
+- You can visualize the branching structure of a repository using tools like `git log` with options or specialized graphical Git tools.
+
+## Common Branching Workflows
+
+### 1. **Feature Branch Workflow**
+
+- Create a new branch for each new feature or enhancement.
+- Develop and test the feature on the feature branch.
+- Merge the feature branch into `master` when it's complete.
+
+### 2. **Git Flow Workflow**
+
+- A more structured branching model with specific branches for features, releases, and hotfixes.
+- Uses branches like `feature/`, `release/`, `hotfix/`, and `develop`.
+
+For more details and advanced branching strategies, refer to the [official Git documentation](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging).
+
+## Generating Your SSH Public Key
+
+Many Git servers authenticate using SSH public keys. In order to provide a public key, each user in your system must generate one if they don’t already have one. This process is similar across all operating systems. First, you should check to make sure you don’t already have a key. By default, a user’s SSH keys are stored in that user’s ``~/.ssh `` directory. You can easily check to see if you have a key already by going to that directory and listing the contents:
+
+```
+cd ~/.ssh
+ls
+authorized_keys2  id_dsa       known_hosts
+config            id_dsa.pub
+```
+
+If you don’t have these files (or you don’t even have a ``.ssh`` directory), you can create them by running a program called ``ssh-keygen``, which is provided with the SSH package on Linux/macOS systems and comes with Git for Windows:
+
+```
+ssh-keygen -t ed25519 -C "your_email@example.com"
+```
+
+- *Note: If you are using a legacy system that doesn't support the Ed25519 algorithm, use:*
+```
+ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+```
+
+## **`output`**
+```bash
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/schacon/.ssh/id_rsa):
+Created directory '/home/schacon/.ssh'.
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in /home/schacon/.ssh/id_rsa.
+Your public key has been saved in /home/schacon/.ssh/id_rsa.pub
+```
+For more details on how to generate ssh keys, refer to the [GitHub Authentication Documentation Page.](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent).
+
