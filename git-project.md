@@ -131,3 +131,95 @@ The first thing you should do after installing Git is to set your identity. This
    git config --global user.email johndoe@example.com
 ```
 
+NB: Replace `"Your Name"` with your actual name and `"youremail@example.com"` with your email address consistent with your GitHub/GitLab account profile.
+
+### Configuring Editor
+
+You can specify your preferred text editor for Git messages and other interactions.
+
+```bash
+git config --global core.editor "your-editor-of-choice"
+```
+
+Replace `"your-editor-of-choice"` with the command to launch your preferred text editor (e.g., `"nano"`, `"vim"`, `"code"`).
+
+### Checking Your Configuration
+
+To confirm your Git configuration settings, you can use:
+
+```bash
+git config --list
+```
+This command will display all the configuration variables and their values; 
+
+## **`output`**
+
+```bash
+user.name=John Doe
+user.email=johndoe@example.com
+```
+## Getting Help
+
+If you ever need help while using Git, there are three equivalent ways to get the comprehensive manual page (manpage) help for any of the Git commands:
+```bash
+$ git help <verb>
+$ git <verb> --help
+$ man git-<verb>
+```
+For example, you can get the manpage help for the `git config` command by running this:
+```bash
+$ git help config
+```
+In addition, if you don’t need the full-blown manpage help, but just need a quick refresher on the available options for a Git command, you can ask for the more concise “help” output with the -h option, as in:
+
+```bash
+git add -h
+```
+## **`output`**
+```bash
+usage: git add [<options>] [--] <pathspec>...
+
+    -n, --dry-run               dry run
+    -v, --verbose               be verbose
+    -i, --interactive           interactive picking
+    -p, --patch                 select hunks interactively
+    -e, --edit                  edit current diff and apply
+    -f, --force                 allow adding otherwise ignored files
+    -u, --update                update tracked files
+```
+## Getting a Git Repository
+
+You typically obtain a Git repository in one of two ways:
+
+- You can take a local directory that is currently not under version control, and turn it into a Git repository, or
+
+- You can clone an existing Git repository from elsewhere.
+
+In either case, you end up with a Git repository on your local machine, ready for work.
+
+### Initializing a Repository in an Existing Directory
+
+If you have a project directory that is currently not under version control and you want to start controlling it with Git, you first need to go to that project’s directory. If you’ve never done this, it looks a little different depending on which system you’re running:
+
+***for Linux:***
+```bash 
+$ cd /home/user/my_project
+```
+
+***for macOS:***
+
+```bash 
+$ cd /Users/user/my_project
+```
+
+***for Windows:***
+
+```bash
+$ cd C:/Users/user/my_project
+```
+**and type:**
+
+```bash
+$ git init
+```
+This creates a new subdirectory named ``.git`` that contains all of your necessary repository files — a Git repository skeleton.
