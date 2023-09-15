@@ -70,7 +70,7 @@ This leads us to the three main sections of a Git project:
 - **Staging Area** 📦: Where you stage changes before committing.
 - **Git Directory** 🗄️: The local database where committed changes are stored.
 
-![git workflow](./images/git-project-1.png)
+![git workflow](./images/git-project-2.png)
 
 📝 Remembering these states and commands is crucial for understanding Git's workflow and version control process.
 
@@ -111,4 +111,5 @@ Create a Folder on your local system and do the following:
 - Open the folder with Gitbash/Terminal/iterm and run `git init`
 - Create a file `gitfile-1.txt` and run `git status`
 - Create and switch to a new branch using `git checkout -b <branch_name>`
+
 
