@@ -307,3 +307,53 @@ nano /var/www/your_domain/index.html
   </body>
 </html>
 ```
+
+Save and close the file, then go to your browser and access your server’s domain name or IP address:
+
+```
+http://server_domain_or_IP
+```
+
+Your web page should reflect the contents in the file you just edited:
+
+![Web Page](./images/lamp-project-2.png)
+
+**🏅 Congratulations! 👏👏👏👏👏**
+
+## Step 5 — Testing PHP Processing on your Web Server
+
+Now that you have a custom location to host your website’s files and folders, create a PHP test script to confirm that Apache is able to handle and process requests for PHP files.
+
+Create a new file named ``info.php`` inside your custom web root folder:
+
+```
+nano /var/www/your_domain/info.php
+```
+
+This will open a blank file. Add the following text, which is valid PHP code, inside the file:
+
+***/var/www/your_domain/info.php***
+---
+```
+<?php
+phpinfo();
+```
+
+When you are finished, save and close the file.
+
+To test this script, go to your web browser and access your server’s domain name or IP address, followed by the script name, which in this case is ``info.php``:
+
+```
+http://server_domain_or_IP/info.php
+```
+
+If you get the image below, you're Good 👍🏆
+
+![PHP Page](./images/lamp-project-3.png)
+
+**🤔 Side Hustle Task 1 ⌛️:** 
+
+- Replicate the steps above and make notes of how you're able to implement the LAMP in your environment. NB: You markdown format for your notes with minimal pictures.
+
+
+Documentation Credit: [Digital Ocean](https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-ubuntu-22-04#prerequisites)
