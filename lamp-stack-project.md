@@ -244,15 +244,66 @@ sudo nano /etc/apache2/sites-available/your_domain.conf
 
 This will create a new blank file. Add in the following bare-bones configuration with your own domain name:
 
-
-In the above Markdown, we use two horizontal rules (`---`) to create a visual separation between the heading and the `shell` code block. The `## Shell Heading` line serves as your heading, and the `---` lines create a horizontal line above and below it, providing a clear separation.
-
-When rendered, it will look like this:
-
-## Shell Heading
-
+***/etc/apache2/sites-available/your_domain.conf***
 ---
 
-```shell
-# Your shell code here
-echo "Hello, World!"
+```
+<VirtualHost *:80>
+    ServerName your_domain
+    ServerAlias www.your_domain 
+    ServerAdmin webmaster@localhost
+    DocumentRoot /var/www/your_domain
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+```
+
+Save and close the file when you’re done. If you’re using ``nano``, do that by pressing ``CTRL+X``, then ``Y`` and ``ENTER``.
+
+With this ``VirtualHost`` configuration, we’re telling Apache to serve ``your_domain`` using ``/var/www/your_domain`` as the web root directory. If you’d like to test Apache without a domain name, you can remove or comment out the options ``ServerName`` and ``ServerAlias`` by adding a pound sign (``#``) the beginning of each option’s lines.
+
+Now, use ``a2ensite`` to enable the new virtual host:
+
+```
+sudo a2ensite your_domain
+```
+
+You might want to disable the default website that comes installed with Apache. This is required if you’re not using a custom domain name, because in this case Apache’s default configuration would override your virtual host. To disable Apache’s default website, type:
+
+```
+sudo a2dissite 000-default
+```
+
+To make sure your configuration file doesn’t contain syntax errors, run the following command:
+
+```
+sudo apache2ctl configtest
+```
+
+Finally, reload Apache so these changes take effect:
+
+```
+sudo systemctl reload apache2
+```
+
+Your new website is now active, but the web root ``/var/www/your_domain`` is still empty. Create an ``index.html`` file in that location to test that the virtual host works as expected:
+
+```
+nano /var/www/your_domain/index.html
+```
+
+***/var/www/your_domain/index.html***
+---
+
+```
+<html>
+  <head>
+    <title>your_domain website</title>
+  </head>
+  <body>
+    <h1>Hello World!</h1>
+
+    <p>This is the landing page of <strong>your_domain</strong>.</p>
+  </body>
+</html>
+```
