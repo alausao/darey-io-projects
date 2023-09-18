@@ -89,12 +89,72 @@ Prior to July 2022, this script would silently fail after attempting to set the 
 
 **``output``**
 
-```shell
-**``output``**
+```
+<b>output</b>
 ... Failed! Error: SET PASSWORD has no significance for user 'root'@'localhost' as the authentication method used doesn't store authentication data in the MySQL server. Please consider using ALTER USER instead if you want to change authentication parameters.
 
 New password:
 ```
 
 This will lead the script into a recursive loop which you can only get out of by closing your terminal window.
+
+To avoid entering this recursive loop, though, you’ll need to first adjust how your root MySQL user authenticates.
+
+First, open up the MySQL prompt:
+
+```shell
+sudo mysql
+```
+
+Then run the following ``ALTER USER`` command to change the **root** user’s authentication method to one that uses a password. The following example changes the authentication method to ``mysql_native_password``:
+
+```shell
+mysql> ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
+```
+
+After making this change, exit the MySQL prompt:
+
+```shell
+mysql> exit
+```
+Then, you can run the ``mysql_secure_installation`` script without issue.
+
+```bash
+sudo mysql_secure_installation
+```
+This will ask if you want to configure the ``VALIDATE PASSWORD PLUGIN``.
+
+- Note: Enabling this feature is something of a judgment call. If enabled, passwords which don’t match the specified criteria will be rejected by MySQL with an error. It is safe to leave validation disabled, but you should always use strong, unique passwords for database credentials.
+
+Answer ``Y`` for yes, or anything else to continue without enabling.
+
+```
+VALIDATE PASSWORD PLUGIN can be used to test passwords
+and improve security. It checks the strength of password
+and allows the users to set only those passwords which are
+secure enough. Would you like to setup VALIDATE PASSWORD plugin?
+
+Press y|Y for Yes, any other key for No:
+```
+
+If you answer “yes”, you’ll be asked to select a level of password validation. Keep in mind that if you enter ``2`` for the strongest level, you will receive errors when attempting to set any password which does not contain numbers, upper and lowercase letters, and special characters:
+
+```
+There are three levels of password validation policy:
+
+LOW    Length >= 8
+MEDIUM Length >= 8, numeric, mixed case, and special characters
+STRONG Length >= 8, numeric, mixed case, special characters and dictionary              file
+
+Please enter 0 = LOW, 1 = MEDIUM and 2 = STRONG: <b>1</b>
+```
+
+Regardless of whether you chose to set up the ``VALIDATE PASSWORD PLUGIN``, your server will next ask you to select and confirm a password for the MySQL root user. This is not to be confused with the **system root**. The **database root** user is an administrative user with full privileges over the database system. Even though the default authentication method for the MySQL root user doesn’t involve using a password, **even when one is set**, you should define a strong password here as an additional safety measure.
+
+If you enabled password validation, you’ll be shown the password strength for the root password you just entered and your server will ask if you want to continue with that password. If you are happy with your current password, enter ``Y`` for “yes” at the prompt:
+
+```
+Estimated strength of the password: <b>100</b>
+Do you wish to continue with the password provided?(Press y|Y for Yes, any other key for No)
+```
 
