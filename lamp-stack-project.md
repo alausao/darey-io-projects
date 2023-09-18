@@ -172,7 +172,7 @@ Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 10
 Server version: 8.0.28-0ubuntu4 (Ubuntu)
 
-Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
 
 Oracle is a registered trademark of Oracle Corporation and/or its
 affiliates. Other names may be trademarks of their respective
@@ -182,3 +182,77 @@ Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 
 mysql> 
 ```
+To exit the MySQL console, type:
+
+```
+mysql> exit
+```
+
+Notice that you didn’t need to provide a password to connect as the **root** user, even though you have defined one when running the ``mysql_secure_installation`` script. That is because the default authentication method for the administrative MySQL user is ``unix_socket`` instead of ``password``. Even though this might seem like a security concern, it makes the database server more secure because the only users allowed to log in as the **root** MySQL user are the system users with sudo privileges connecting from the console or through an application running with the same privileges.
+
+Your MySQL server is now installed and secured. Next, you’ll install PHP, the final component in the LAMP stack. Let's dive right in 🚀
+
+## 📝 Step 3 —  Installing PHP
+
+You have Apache installed to serve your content and MySQL installed to store and manage your data. PHP is the component of our setup that will process code to display dynamic content to the final user. In addition to the ``php`` package, you’ll need ``php-mysql``, a PHP module that allows PHP to communicate with MySQL-based databases. You’ll also need ``libapache2-mod-php`` to enable Apache to handle PHP files. Core PHP packages will automatically be installed as dependencies.
+
+run the following command to install these packages:
+
+```shell
+sudo apt install php libapache2-mod-php php-mysql -y
+```
+
+You can verify the installation using:
+
+```
+php -v
+```
+
+```
+Output
+PHP 8.1.2 (cli) (built: Jun  4 2023 18:13:46) (NTS)
+Copyright (c) The PHP Group
+Zend Engine v4.1.2, Copyright (c) Zend Technologies
+    with Zend OPcache v8.1.2, Copyright (c), by Zend Technologies
+```
+
+At this point, your LAMP stack is fully operational, but before testing your setup with a PHP script, it’s best to set up a proper [Apache Virtual Host](https://httpd.apache.org/docs/current/vhosts/) to hold your website’s files and folders.
+
+## Step 4 — Creating a Virtual Host for your Website
+
+When using the Apache web server, you can create virtual hosts (similar to server blocks in Nginx) to encapsulate configuration details and host more than one domain from a single server. In this guide, we’ll set up a domain called **your_domain**, but you should **replace this with your own domain name**.
+
+Apache on Ubuntu 22.04 has one virtual host enabled by default that is configured to serve documents from the ``/var/www/html directory``. While this works well for a single site, it can become unwieldy if you are hosting multiple sites. Instead of modifying ``/var/www/html``, we’ll create a directory structure within ``/var/www`` for the **your_domain** site, leaving ``/var/www/html`` in place as the default directory to be served if a client request doesn’t match any other sites.
+
+Create the directory for **your_domain** as follows:
+
+```
+sudo mkdir /var/www/your_domain
+```
+
+Next, assign ownership of the directory with the ``$USER`` environment variable, which will reference your current system user:
+
+```
+sudo chown -R $USER:$USER /var/www/your_domain
+```
+
+Then, open a new configuration file in Apache’s ``sites-available`` directory using your preferred command-line editor. Here, we’ll use ``nano``:
+
+```
+sudo nano /etc/apache2/sites-available/your_domain.conf
+```
+
+This will create a new blank file. Add in the following bare-bones configuration with your own domain name:
+
+
+In the above Markdown, we use two horizontal rules (`---`) to create a visual separation between the heading and the `shell` code block. The `## Shell Heading` line serves as your heading, and the `---` lines create a horizontal line above and below it, providing a clear separation.
+
+When rendered, it will look like this:
+
+## Shell Heading
+
+---
+
+```shell
+# Your shell code here
+echo "Hello, World!"
