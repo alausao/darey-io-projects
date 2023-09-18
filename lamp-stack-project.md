@@ -353,7 +353,7 @@ If you get the image below, you're Good 👍🏆
 
 **🤔 Side Hustle Task 1 ⌛️:** 
 
-- Replicate the steps above and make notes of how you're able to implement the LAMP in your environment. NB: You markdown format for your notes with minimal pictures.
+- Replicate the steps above and make notes of how you're able to implement the LAMP Stack in your environment. NB: Use markdown format for your notes with minimal pictures.
 
 
 Documentation Credit: [Digital Ocean](https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-ubuntu-22-04#prerequisites)
