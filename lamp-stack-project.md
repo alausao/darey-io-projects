@@ -83,14 +83,13 @@ sudo apt install mysql-server -y
 ```
 When the installation is finished, it’s recommended that you run a security script that comes pre-installed with MySQL. This script will remove some insecure default settings and lock down access to your database system. Hey! There's a warning!
 
-⚠️ As of ``July 2022``, an error will occur when you run the ``mysql_secure_installation`` script without some further configuration. The reason is that this script will attempt to set a password for the installation’s **root** MySQL account but, by default on Ubuntu installations, this account is not configured to connect using a password.
+<span style="color:orange">⚠️</span> **Warning!**  As of ``July 2022``, an error will occur when you run the ``mysql_secure_installation`` script without some further configuration. The reason is that this script will attempt to set a password for the installation’s **root** MySQL account but, by default on Ubuntu installations, this account is not configured to connect using a password.
 
 Prior to July 2022, this script would silently fail after attempting to set the **root** account password and continue on with the rest of the prompts. However, as of this writing the script will return the following error after you enter and confirm a password:
 
 **``output``**
 
 ```
-<b>output</b>
 ... Failed! Error: SET PASSWORD has no significance for user 'root'@'localhost' as the authentication method used doesn't store authentication data in the MySQL server. Please consider using ALTER USER instead if you want to change authentication parameters.
 
 New password:
@@ -146,7 +145,7 @@ LOW    Length >= 8
 MEDIUM Length >= 8, numeric, mixed case, and special characters
 STRONG Length >= 8, numeric, mixed case, special characters and dictionary              file
 
-Please enter 0 = LOW, 1 = MEDIUM and 2 = STRONG: <b>1</b>
+Please enter 0 = LOW, 1 = MEDIUM and 2 = STRONG: 1
 ```
 
 Regardless of whether you chose to set up the ``VALIDATE PASSWORD PLUGIN``, your server will next ask you to select and confirm a password for the MySQL root user. This is not to be confused with the **system root**. The **database root** user is an administrative user with full privileges over the database system. Even though the default authentication method for the MySQL root user doesn’t involve using a password, **even when one is set**, you should define a strong password here as an additional safety measure.
@@ -154,11 +153,32 @@ Regardless of whether you chose to set up the ``VALIDATE PASSWORD PLUGIN``, your
 If you enabled password validation, you’ll be shown the password strength for the root password you just entered and your server will ask if you want to continue with that password. If you are happy with your current password, enter ``Y`` for “yes” at the prompt:
 
 ```
-Estimated strength of the password: <b>100</b>
+Estimated strength of the password: 100
 Do you wish to continue with the password provided?(Press y|Y for Yes, any other key for No)
 ```
 
-Estimated strength of the <b>password</b>: 100
-Do you wish to continue with the password provided?(Press y|Y for Yes, any other key for No)
+For the rest of the questions, press ``Y`` and hit the ``ENTER`` key at each prompt. This will remove some anonymous users and the test database, disable remote root logins, and load these new rules so that MySQL immediately respects the changes you have made.
 
+When you’re finished, test whether you’re able to log in to the MySQL console by typing:
 
+```
+sudo mysql
+```
+This will connect to the MySQL server as the administrative database user **root**, which is inferred by the use of ``sudo`` when running this command. Below is an example output:
+
+```
+Output
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 10
+Server version: 8.0.28-0ubuntu4 (Ubuntu)
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> 
+```
