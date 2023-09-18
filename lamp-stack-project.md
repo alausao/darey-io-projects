@@ -22,7 +22,7 @@ A “LAMP” stack is a group of open source software that is typically installe
 
 ### Let Us Begin 🚀
 
-## Step 1 — Installing Apache and Updating the Firewall [AWS SECURITY GROUP]
+## 📋 Step 1 — Installing Apache and Updating AWS SECURITY GROUP
 
 The Apache web server is among the most popular web servers in the world. It’s well documented, has an active community of users, and has been in wide use for much of the history of the web, which makes it a great choice for hosting a website.
 
@@ -71,4 +71,29 @@ The default Ubuntu 22.04 Apache web page is there for informational and testing 
 ![Apache2](./images/lamp-project-1.png)
 
 If you can view this page, your web server is correctly installed and accessible through your firewall.
+
+## 📝 Step 2 —  Installing MySQL
+
+Now that you have a web server up and running, you need to install the database system to be able to store and manage data for your site. MySQL is a popular database management system used within PHP environments.
+
+Again, use ``apt`` to acquire and install this software:
+
+```shell
+sudo apt install mysql-server -y
+```
+When the installation is finished, it’s recommended that you run a security script that comes pre-installed with MySQL. This script will remove some insecure default settings and lock down access to your database system. Hey! There's a warning!
+
+⚠️ As of ``July 2022``, an error will occur when you run the ``mysql_secure_installation`` script without some further configuration. The reason is that this script will attempt to set a password for the installation’s **root** MySQL account but, by default on Ubuntu installations, this account is not configured to connect using a password.
+
+Prior to July 2022, this script would silently fail after attempting to set the **root** account password and continue on with the rest of the prompts. However, as of this writing the script will return the following error after you enter and confirm a password:
+
+``**output**``
+
+```shell
+... Failed! Error: SET PASSWORD has no significance for user 'root'@'localhost' as the authentication method used doesn't store authentication data in the MySQL server. Please consider using ALTER USER instead if you want to change authentication parameters.
+
+New password:
+```
+
+This will lead the script into a recursive loop which you can only get out of by closing your terminal window.
 
