@@ -158,3 +158,7 @@ Estimated strength of the password: <b>100</b>
 Do you wish to continue with the password provided?(Press y|Y for Yes, any other key for No)
 ```
 
+Estimated strength of the <b>password</b>: 100
+Do you wish to continue with the password provided?(Press y|Y for Yes, any other key for No)
+
+
