@@ -75,7 +75,7 @@ sudo apt install php-curl php-gd php-mbstring php-xml php-xmlrpc
 
 At this point, all LEMP Stack components are installed, but the stack is not yet ready to use. The individual elements must be configured or enabled. Each component can immediately be configured after installation, but it’s usually easier to install all the applications first and configure them later.
 
-### Configuring the NGINX Web Server and Creating a Site Configuration File
+### Configuring Security Group
 
 NGINX is easier to configure than some other web servers. However, the firewall settings must be configured to allow web access through both HTTP and HTTPS. Additionally, creating a site configuration file in NGINX is highly recommended, even if only one site is hosted on the server. If multiple sites are being hosted, a site configuration file is mandatory. To finish setting up NGINX, follow these steps
 
@@ -103,6 +103,72 @@ NGINX is easier to configure than some other web servers. However, the firewall 
 
 ***With these steps completed, you have opened port 80 for HTTP traffic in your AWS Security Group, allowing incoming web traffic to reach your Apache EC2 Instance.***
 
-After configuring the security group, ensure NGINX allows web access. Using a browser, visit the Public IP address of the web server. The site displays the default NGINX welcome page. ![Nginx Welcome Page](./images/lemp-project-1.png)
+After configuring the security group, ensure NGINX allows web access. Using a browser, visit the Public IP address of the web server. The site displays the default NGINX welcome page. 
 
+![Nginx Welcome Page](./images/lemp-project-1.png)
+
+### Configuring the NGINX Web Server and Creating a Site Configuration File
+
+1. Create a root ``public_html`` directory for the site. Create this directory within the /``var/www/html/domain_name`` directory, where ``domain_name`` is the name of the site. In the following command, replace ``example.com`` with the actual name of the domain.
+
+```
+sudo mkdir -p /var/www/html/example.com/public_html
+```
+
+2. It is simpler to base the site configuration file on the default NGINX welcome page. Copy over the default NGINX configuration file to ``/etc/nginx/sites-available/example.com.conf.`` Replace ``example``.com with the name of the domain. The new configuration file must be named after the domain and have the ``.conf`` extension.
+
+```
+sudo cp /etc/nginx/sites-enabled/default /etc/nginx/sites-available/example.com.conf
+```
+
+3. Edit the ``.conf`` file for the domain, making the following changes. A line-by-line description is as follows:
+
+- Delete the existing uncommented ``server`` configuration all the way to the line ``Virtual Host configuration for example.com``. Change the name of the comment to reflect the name of the domain. Uncomment the remaining lines. All further changes occur inside the remaining code block beginning with ``server``.
+
+- Leave the ``listen`` configuration in place. These lines tell NGINX to listen for incoming connections on port ``80``.
+
+- Change the value for ``server_name`` to the name of the domain. Enter the domain name with and without the ``www`` prefix so visitors can use either alternative.
+
+- Set ``root`` to the name of the newly-created root directory for the domain. For ``example.com``, this is ``/var/www/html/example.com/public_html``.
+
+- For most sites, the value of ``index`` should be ``index.html``. However, for WordPress and other sites that use PHP, it must be changed to ``index.php``.
+
+- The block starting with ``location /`` should remain unchanged. The ``try_files`` configuration instructs NGINX to verify the requested file actually exists before processing the request. If the file does not exist, NGINX returns a ``404`` error.
+
+- Add a code block for ``location ~* \.php$``. NGINX applies this configuration to all domain files with the ``php`` extension. The ``*`` symbol indicates PHP file names are not case sensitive.
+
+- Change the name of ``fastcgi_pass`` to indicate the socket where PHP should listen to new requests. This is found at ``unix:/run/php/php<release_num>-fpm.sock``, where ``release_num`` is the PHP release number. For instance, if PHP release ``8.1`` is installed, ``fastcgi_pass`` should be ``unix:/run/php/php8.1-fpm.sock``. To determine the PHP release, use the command ``php -v``.
+
+- Set the ``include`` directive to ``snippets/fastcgi-php.conf``. This is the name of the configuration file that handles PHP processing.
+
+- Add a ``location`` block for ``~ /\.ht``. This tells NGINX not to serve any ``.htaccess`` files.
+
+Here is an example of a domain configuration file. Replace ``example.com`` with the name of the actual domain wherever it occurs.
+
+---
+File: /etc/nginx/sites-available/example.com.conf
+---
+```
+server {
+    listen 80;
+    listen [::]:80;
+
+    server_name example.com www.example.com;
+    root /var/www/html/example.com/public_html;
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+
+    location ~ \.php$ {
+        fastcgi_pass unix:/var/run/php/php8.1-fpm.sock;
+        include snippets/fastcgi-php.conf;
+    }
+
+    location ~ /\.ht {
+        deny all;
+    }
+}
+```
 
