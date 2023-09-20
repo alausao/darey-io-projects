@@ -144,7 +144,6 @@ sudo cp /etc/nginx/sites-enabled/default /etc/nginx/sites-available/example.com.
 Here is an example of a domain configuration file. Replace ``example.com`` with the name of the actual domain wherever it occurs.
 
 **``File: /etc/nginx/sites-available/example.com.conf``**
-
 ```
 server {
     listen 80;
@@ -262,7 +261,6 @@ To validate the installation, follow these steps:
 1. Create a test file named ``phptest.php`` in the ``public_html`` directory for the domain. Set ``servername`` to ``localhost`` and ensure the ``username`` and ``password`` match the authentication details for the MariaDB web user account.
 
 **``File: /var/www/html/example.com/public_html/phptest.php``**
-
 ```
 <html>
 <head>
