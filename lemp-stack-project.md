@@ -38,7 +38,7 @@ sudo apt install nginx
 sudo systemctl status nginx
 ```
 ---
-**output**
+**``output``**
 ---
 ```
 nginx.service - A high performance web server and a reverse proxy server
@@ -46,3 +46,4 @@ nginx.service - A high performance web server and a reverse proxy server
      Active: active (running) since Wed 2023-09-20 11:00:50 UTC; 14s ago
        Docs: man:nginx(8)
 ```
+
