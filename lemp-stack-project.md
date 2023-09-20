@@ -73,3 +73,36 @@ sudo apt install php-curl php-gd php-mbstring php-xml php-xmlrpc
 
 ### How to Configure a LEMP Stack on Ubuntu
 
+At this point, all LEMP Stack components are installed, but the stack is not yet ready to use. The individual elements must be configured or enabled. Each component can immediately be configured after installation, but it’s usually easier to install all the applications first and configure them later.
+
+### Configuring the NGINX Web Server and Creating a Site Configuration File
+
+NGINX is easier to configure than some other web servers. However, the firewall settings must be configured to allow web access through both HTTP and HTTPS. Additionally, creating a site configuration file in NGINX is highly recommended, even if only one site is hosted on the server. If multiple sites are being hosted, a site configuration file is mandatory. To finish setting up NGINX, follow these steps
+
+1. **Access the EC2 Dashboard:**
+   Once logged in, navigate to the EC2 Dashboard. You can do this by either searching for "EC2" in the AWS services search bar or by finding "EC2" under "Compute" in the AWS services list.
+
+2. **Select the Appropriate Security Group:**
+   In the EC2 Dashboard, select the instance for which you want to open port 80. Under the "Description" tab, find the "Security groups" section, and click on the security group associated with your instance. This will take you to the Security Group page.
+
+3. **Edit the Security Group Inbound Rules:**
+   On the Security Group page, navigate to the "Inbound rules" tab. This is where you can configure the rules to allow incoming traffic.
+
+4. **Add a Rule for Port 80 & 443 (HTTP & HTTPS):**
+   To open port 80 & 443 for HTTP traffic, click the "Edit inbound rules" button. Then, click the "Add rule" button to add a new rule. Configure the rule as follows:
+   - **Type:** HTTP (80)
+   - **Source:** You can specify the source IP range or leave it as 0.0.0.0/0 to allow traffic from any IP address.
+
+   Repeat the above steps to add HTTPS (443)
+
+6. **Review and Save the Rule:**
+   Double-check your rule settings to ensure they are correct. Once you are satisfied, click the "Save rules" or "Save" button to apply the changes.
+
+7. **Confirm the Rule:**
+   After saving, the rule will be added to your security group. Make sure that it's properly configured and that the inbound rule for port 80 (HTTP) is present.
+
+***With these steps completed, you have opened port 80 for HTTP traffic in your AWS Security Group, allowing incoming web traffic to reach your Apache EC2 Instance.***
+
+After configuring the security group, ensure NGINX allows web access. Using a browser, visit the Public IP address of the web server. The site displays the default NGINX welcome page. ![Nginx Welcome Page](./images/lemp-project-1.png)
+
+
