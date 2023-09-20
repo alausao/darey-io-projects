@@ -172,3 +172,136 @@ server {
 }
 ```
 
+4. To enable the site, create a link to the domain configuration file from the ``sites-enabled`` directory. In the following command, replace ``example.com`` with the name of the domain.
+
+```
+sudo ln -s /etc/nginx/sites-available/example.com.conf /etc/nginx/sites-enabled/
+```
+
+8. (Optional) For enhanced security, unlink the default site.
+
+```
+sudo unlink /etc/nginx/sites-enabled/default
+```
+
+9. Validate the changes using the ``nginx -t`` command. If the test command finds any errors, inspect the new file and make any necessary adjustments.
+
+```
+sudo nginx -t
+```
+**``output``**
+
+```
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+```
+
+### Configuring the MariaDB Database
+
+The MariaDB database is ready to use. However, a new database user has to be created for the web application. It is also important to tighten application security. To finish configuring MariaDB, follow these steps.
+
+1. Log in to the MariaDB shell as the ``root`` user. The application displays the ``MariaDB`` prompt.
+
+```
+sudo mysql -u root
+```
+**``output``**
+
+```
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 31
+Server version: 10.6.7-MariaDB-2ubuntu1 Ubuntu 22.04
+...
+MariaDB [(none)]
+```
+
+2. Create the ``webdata`` database.
+
+```
+CREATE DATABASE webdata;
+```
+
+3. Use the ``CREATE USER`` command to add a new “web application” user. Provide a more secure user name and password in place of ``webuser`` and ``password`` in the query.
+
+```
+CREATE USER 'webuser' IDENTIFIED BY 'password';
+```
+
+4. Grant full rights to the new user. MariaDB should respond with ``Query OK`` after each line. Use the following SQL commands to configure the database.
+
+```
+GRANT ALL ON webdata.* TO 'webuser';
+```
+
+5. Exit the database shell
+
+```
+quit
+```
+
+6. Use the built-in [mysql_secure_installation](https://mariadb.com/kb/en/mysql_secure_installation/) tool to increase the security of the database.
+
+```
+sudo mysql_secure_installation
+```
+
+7. It is not necessary to switch over to Unix socket authentication. It is also not necessary to change the root password, and it is safe to leave this field blank when prompted. However, answer ``Y`` to the following questions:
+
+- ``Remove anonymous users?``
+- ``Disallow root login remotely?``
+- ``Remove test database and access to it?``
+- ``Reload privilege tables now?``
+
+### Testing the LEMP Stack Installation on the Ubuntu Server
+
+In addition to verifying the web server works properly, it is critical to test the virtual host configuration, PHP integration, and the MariaDB database. This is the only way to confirm all components can interact together.
+
+The easiest way to verify an Ubuntu LEMP stack installation is with a short test script. This script must be placed somewhere within the ``DirectoryRoot`` directory.
+
+The PHP test code must initiate a connection to MariaDB using the ``mysqli_connect`` function. Use the username and the password for the account created in the **Configuring the MariaDB Database** section. If the connection is successful, the function returns a ``Connection`` object. The script provides information about the status of the connection attempt along with details about any failures.
+
+To validate the installation, follow these steps:
+
+1. Create a test file named ``phptest.php`` in the ``public_html`` directory for the domain. Set ``servername`` to ``localhost`` and ensure the ``username`` and ``password`` match the authentication details for the MariaDB web user account.
+
+---
+File: /var/www/html/example.com/public_html/phptest.php
+---
+
+```
+<html>
+<head>
+    <title>PHP Test</title>
+</head>
+    <body>
+    <?php echo '<p>Welcome to the Site!</p>';
+
+    // The servername must be 'localhost'. Use the name and password of the web user account created earlier. Do not use the root password.
+    $servername = "localhost";
+    $username = "webuser";
+    $password = "password";
+
+    // Create MySQL connection
+    $conn = mysqli_connect($servername, $username, $password);
+
+    // If the conn variable is empty, the connection has failed. The output for the failure case includes the error message
+    if (!$conn) {
+        die('<p>Connection failed: </p>' . mysqli_connect_error());
+    }
+    echo '<p>Connected successfully</p>';
+    ?>
+</body>
+</html>
+```
+
+Execute the test script using a web browser. In the address bar, enter the domain name or server IP followed by ``/phptest.php``. In the following example, substitute the actual name of the domain for example.com.
+
+```
+http://example.com/phptest.php
+```
+
+If everything is installed correctly, the browser should display the text ``Welcome to the Site!`` and ``Connected successfully.`` If you see the ``Connection Failed``: message, review the SQL error information to debug the problem.
+
+![Welcome to site](./images/lemp-project-2.png)
+
+
