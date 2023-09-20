@@ -47,3 +47,29 @@ nginx.service - A high performance web server and a reverse proxy server
        Docs: man:nginx(8)
 ```
 
+4. Install the MariaDB database
+
+```
+sudo apt install mariadb-server
+```
+
+5. Install the PHP module for MariaDB/MySQL support
+
+```
+sudo apt install php-mysql
+```
+
+6. Install the PHP FastCGI Processing Manager. This includes all the PHP packets necessary for NGINX support, along with other core dependencies
+
+```
+sudo apt install php-fpm
+```
+
+7. (Optional) Other applications, including WordPress, require additional PHP components. The following optional packages are frequently helpful
+
+```
+sudo apt install php-curl php-gd php-mbstring php-xml php-xmlrpc
+```
+
+### How to Configure a LEMP Stack on Ubuntu
+
