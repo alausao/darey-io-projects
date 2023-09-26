@@ -10,7 +10,7 @@ It includes command line editing, key bindings, command history with unlimited s
 
 Before learning Bash Shell, you must have the basic knowledge of the Linux Operating System. Although this tutorial is designed to help beginners and professionals.
 
-### Now have a look at what a Shell is known for.
+### Let's Understand Shell itself.
 
 **Shell**: A UNIX Shell is a program or a command line interpreter that interprets the user commands which are either entered by the user directly or which can be read from a file (i.e., Shall Script), and then pass them to the operating system for processing. It is important to note that Shall scripts are interpreted and not compiled, as the computer system interprets them and there is not any need to compile Shell Scripts in order of execution.
 
@@ -42,7 +42,7 @@ cat /etc/shells
 /usr/bin/screen
 ```
 
-## Let's look a bit of History
+## Let's take a look at BASH History
 
     Previously, most of the software in the UNIX world was proprietary and closed source. UNIX system was also not open-sourced for which, you had to use a shell. There was a shell existed at that time named by "Bourne Shell" under the /bin/sh command which was proprietary and closed source. Bourne named after its inventor- Steven Bourne.
     Richard Stallman at that time began GNU project with Free Software Foundation (FSF) to create a UNIX-compatible operating system aiming everything as open-source. There was a lack of progress in the revolution. He needed a free shell that could run existing shell scripts. It was imperative to a completely open-source system built as one of the few projects he funded with FSF. Then on January 110, 1988, Brian Fox (FSF employee) began coding on Bash and released Bash as beta, version 0.99 on June 8, 1989.
@@ -50,6 +50,56 @@ cat /etc/shells
     Further, on December 23, 1996, Chet Ramey released another bash version 2.0 for the public with a range of new features over the old bash version.
     And now Chet Ramey is known for the official bash maintainer, and he continues to make further enhancements in bash.
 
+### Shell Prompt
 
+The prompt, `$`, which is called the `command prompt`, is issued by the shell. While the prompt is displayed, you can type a command. Shell reads your input after you press `Enter`. It determines the command you want executed by looking at the first word of your input. A word is an unbroken set of characters. Spaces and tabs separate words. Following is a simple example of the `date` command, which displays the current date and time −
 
+```
+Tue Sep 26 13:34:01 UTC 2023
+```
+
+The basic concept of a shell script is a list of commands, which are listed in the order of execution. A good shell script will have comments, preceded by `#` sign, describing the steps. There are conditional tests, such as value A is greater than value B, loops allowing us to go through massive amounts of data, files to read and store data, and variables to read and store data, and the script may include functions.
+
+Assume we create a `test.sh` script. Note all the scripts would have the `.sh` extension. Before you add anything else to your script, you need to alert the system that a shell script is being started. This is done using the `shebang` construct. For example
+
+```
+#!/bin/sh
+```
+This tells the system that the commands that follow are to be executed by the Bourne shell. It's called a shebang because the `#` symbol is called a `hash`, and the `!` symbol is called a `bang`
+
+To create a script containing these commands, you put the shebang line first and then add the commands
+
+```
+#!/bin/bash
+pwd
+ls
+```
+### Shell Comments
+
+You can put your comments in your script as follows
+```
+#!/bin/bash
+
+# Author : OLUWASEUN
+# Copyright (c) darey.io
+# Script follows here:
+pwd
+ls
+```
+
+Save the above content and make the script executable.
+
+```
+chmod +x test.sh
+```
+The shell script is now ready to be executed
+```
+./test.sh
+```
+Upon execution, you will receive the following result
+```
+/root
+health.sh 
+```
+**Note** − To execute a program available in the current directory, use `./program_name`
 
