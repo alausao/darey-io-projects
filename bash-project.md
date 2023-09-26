@@ -170,3 +170,7 @@ The above command writes the `PID` of the current shell
 ```
 969
 ```
+| Sr.No.| Variable & Description                |
+| ----- | --------------------------------------|
+|   1.  |$0 The filename of the current script.
+|   2.  |
