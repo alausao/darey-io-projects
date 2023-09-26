@@ -170,7 +170,12 @@ The above command writes the `PID` of the current shell
 ```
 969
 ```
-| Sr.No.| Variable & Description                |
-| ----- | --------------------------------------|
-|   1.  |$0 The filename of the current script.
-|   2.  |
+| No.| Variable & Description                |
+| ---| --------------------------------------|
+| 1. |$0 The filename of the current script. |
+| 2. |$n These variables correspond to the arguments with 
+      which a script was invoked. Here n is a positive 
+      decimal number corresponding to the position of an 
+      argument (the first argument is $1, the second 
+      argument is $2, and so on).
+| ---| --------------------------------------|      
