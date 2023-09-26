@@ -129,5 +129,44 @@ VAR_A!
 ```
 The reason you cannot use other characters such as `!`, `*`, or `-` is that these characters have a special meaning for the shell.
 
-#### Defining Variables
+### Defining Variables
 
+Variables are defined as follows:
+```
+variable_name=variable_value
+```
+For example:
+```
+NAME="DevOps"
+```
+The above example defines the variable `NAME` and assigns the value `"DevOps"` to it.
+
+### Accessing Values
+
+To access the value stored in a variable, prefix its name with the dollar sign `($)`
+```
+echo $NAME
+DevOps
+```
+
+### Variable Types
+
+- Local Variables − A local variable is a variable that is present within the current instance of the shell. It is not available to programs that are started by the shell. They are set at the command prompt.
+
+- Environment Variables − An environment variable is available to any child process of the shell. Some programs need environment variables in order to function correctly. Usually, a shell script defines only those environment variables that are needed by the programs that it runs.
+
+- Shell Variables − A shell variable is a special variable that is set by the shell and is required by the shell in order to function correctly. Some of these variables are environment variables whereas others are local variables.
+
+### Let's discuss Special Variable
+
+We will discuss in detail about special variable in Unix. Before now we understood how to be careful when we use certain nonalphanumeric characters in variable names. This is because those characters are used in the names of special Unix variables. These variables are reserved for specific functions.
+
+For example, the `$` character represents the `process ID number`, or `PID`, of the current shell.
+
+```
+echo $$
+```
+The above command writes the `PID` of the current shell
+```
+969
+```
