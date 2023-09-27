@@ -625,3 +625,77 @@ echo "This is a \"quote\" inside double quotes."  # Output: This is a "quote" in
 ```
 Quoting is a fundamental aspect of shell scripting that allows you to control how the shell interprets and processes strings. Whether you need to preserve spaces, include variables, or escape special characters, using the appropriate quoting style is crucial for writing robust and reliable shell scripts.
 
+## Input and Output Redirection in Shell Scripting
+
+Input and output redirection are powerful features in shell scripting that allow you to control where data comes from and where it goes. You can use various symbols and commands to redirect standard input, standard output, and standard error.
+
+### Redirection Symbols
+
+- `<`: Redirects standard input (stdin) from a file.
+- `>`: Redirects standard output (stdout) to a file, overwriting the file if it exists.
+- `>>`: Redirects standard output (stdout) to a file, appending the output to the file if it exists.
+- `2>`: Redirects standard error (stderr) to a file.
+- `2>>`: Redirects standard error (stderr) to a file, appending the error to the file if it exists.
+- `&>` or `2>&1`: Redirects both standard output and standard error to the same location.
+
+**Example 1: Output Redirection (`>` and `>>`)**
+
+```bash
+#!/bin/bash
+
+# Redirect stdout to a file (overwrite if exists)
+echo "This is standard output." > output.txt
+
+# Append stdout to the same file
+echo "This is additional output." >> output.txt
+
+# Redirect stderr to a file (overwrite if exists)
+echo "This is standard error." 2> error.txt
+
+# Append stderr to the same file
+echo "This is additional error." 2>> error.txt
+```
+In this script, we demonstrate output redirection using `>` and `>>`. It redirects both standard output and standard error to separate files, overwriting or appending as needed.
+
+**Example 2: Input Redirection (`<`)**
+
+```bash
+#!/bin/bash
+
+# Redirect stdin from a file
+while read line; do
+    echo "Line read from file: $line"
+done < input.txt
+```
+In this script, we redirect standard input (`stdin`) from a file named `input.txt`. The `while` loop reads each line from the file and processes it, demonstrating input redirection. Input and output redirection are essential for controlling the flow of data in shell scripts. They allow you to work with files, handle errors, and process input efficiently, making your scripts more versatile and powerful.
+
+**💡Side Hustle Task ⏰**
+
+### Summarize the Bash Script Below
+```bash
+#!/bin/bash
+
+source_file="example.txt"
+backup_dir="backup"
+log_file="backup.log"
+
+if [ ! -e "$source_file" ]; then
+    echo "Error: The source file '$source_file' does not exist."
+    exit 1
+fi
+
+if [ ! -d "$backup_dir" ]; then
+    mkdir -p "$backup_dir"
+fi
+
+timestamp=$(date +"%Y%m%d%H%M%S")
+
+echo "Compressing '$source_file'..."
+tar -czf "$backup_dir/backup_$timestamp.tar.gz" "$source_file" > "$log_file" 2>&1
+
+if [ $? -eq 0 ]; then
+    echo "Backup successful. Compressed file created: 'backup_$timestamp.tar.gz'"
+else
+    echo "Error: Backup failed. See '$log_file' for details."
+fi
+```
