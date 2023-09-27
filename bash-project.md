@@ -302,6 +302,10 @@ There must be spaces between operators and expressions. For example, `2+2` is no
 
 The following arithmetic operators are supported by Bourne Shell:
 
+Assume variable a holds `**10**` and variable b holds `**20**` then
+
 | Operator      | Description                           | Example                         |
 | --------------| --------------------------------------| --------------------------------|
-| + (Addition)  | Adds values on either side of the operator | `expr $a + $b` will give 30|
+|+ (Addition)|Adds values on either side of the operator| `expr $a + $b` will give 30|
+|- (Subtraction)|Subtracts right hand operand from left hand operand|`expr $a - $b` will give -10|
+|* (Multiplication)|Multiplies values on either side of the operator|`expr $a * $b` will give 200|
