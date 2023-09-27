@@ -180,4 +180,7 @@ The above command writes the `PID` of the current shell
 |     |       argument is `$2`, and so on).                       |
 | 3.  | `$#` - The number of arguments supplied to a script.    |
 | 4.  | `$*` - All the arguments are double quoted. If a script |
-|     |        receives two arguments, $* is equivalent to $1 $2 |
+|     |        receives two arguments, `$*` is equivalent to `$1` `$2` |
+| 5.  | `$@` - All the arguments are individually double quoted. |
+|     |        If a script receives two arguments, `$@` |
+|     |        is equivalent to `$1` `$2.`|
