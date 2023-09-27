@@ -178,4 +178,6 @@ The above command writes the `PID` of the current shell
 |     |       decimal number corresponding to the position of an |
 |     |       argument (the first argument is `$1`, the second   |
 |     |       argument is `$2`, and so on).                       |
-    
+| 3.  | `$#` - The number of arguments supplied to a script.    |
+| 4.  | `$*` - All the arguments are double quoted. If a script |
+|     |        receives two arguments, $* is equivalent to $1 $2 |
