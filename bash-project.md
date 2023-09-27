@@ -413,4 +413,75 @@ else
 fi
 ```
 
+## Shell Loop Types
+
+A loop is a powerful programming tool that enables you to execute a set of commands repeatedly. In this section, we will examine the `for` and `while` loops available to shell programmers
+
+In Bash scripting, a `for` loop is used to iterate over a list of items, such as elements in an array, files in a directory, or a sequence of numbers. The loop will execute a specified set of commands for each item in the list. Here's the basic syntax of a `for` loop in Bash:
+
+**`Syntax:`**
+```bash
+for item in list
+do
+    # Commands to be executed for each item
+done
+```
+Here's an example of a `for` loop that iterates over a list of numbers and prints each number:
+```bash
+#!/bin/bash
+
+# Define a list of numbers
+numbers=(1 2 3 4 5)
+
+# Iterate over each number in the list
+for num in "${numbers[@]}"
+do
+    echo "Number: $num"
+done
+```
+**`The output of this script will be:`**
+```bash
+Number: 1
+Number: 2
+Number: 3
+Number: 4
+Number: 5
+```
+You can use `for` loops in Bash to automate tasks that involve iterating over a set of items, like processing files, generating sequences, or performing repetitive actions on a list of elements.
+
+A while loop in Bash is used to repeatedly execute a block of commands as long as a specified condition is true. It continues execution until the condition becomes false. If the condition is initially false, the loop's commands may never execute.
+
+**`Syntax:`**
+```bash
+while [condition]
+do
+    # Commands to be executed as long as the condition is true
+done
+```
+
+**`Example of a while Loop:`**
+```bash
+#!/bin/bash
+
+# Initialize a counter
+count=1
+
+# Define the condition (loop until count is less than or equal to 5)
+while [ "$count" -le 5 ]
+do
+    echo "Count: $count"
+    ((count++))  # Increment the counter
+done
+```
+
+**`The output of this script will be:`**
+```bash
+Count: 1
+Count: 2
+Count: 3
+Count: 4
+Count: 5
+```
+
+
 
