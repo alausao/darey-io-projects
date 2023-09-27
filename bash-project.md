@@ -279,7 +279,6 @@ The following operators will be discussed:
 2. Relational Operators
 3. Boolean Operators
 4. String Operators
-5. File Test Operators
 
 Bourne shell didn't originally have any mechanism to perform simple arithmetic operations but it uses external programs, either `awk` or `expr`
 
@@ -331,3 +330,29 @@ Assume variable `a` holds **`10`** and variable `b` holds **`20`** then:
 |**`-lt`**|Checks if the value of the left operand is less than the value of the right operand; if yes, then the condition becomes true.|`[ $a -lt $b ]` is true.|
 |**`-ge`**|Checks if the value of the left operand is greater than or equal to the value of the right operand; if yes, then the condition becomes true.|`[ $a -ge $b ]` is not true.|
 |**`-le`**|Checks if the value of the left operand is less than or equal to the value of the right operand; if yes, then the condition becomes true.|`[ $a -le $b ]` is true.|
+
+### Boolean Operators
+
+The following Boolean operators are supported by the Bourne Shell.
+
+Assume variable `a` holds `10` and variable `b` holds `20` then:
+
+| Operator      | Description                           | Example                         |
+| --------------| --------------------------------------| --------------------------------|
+|**`!`**|This is logical negation. This inverts a true condition into false and vice versa.| `[ ! false ]` is true.|
+|**`-o`**|This is logical OR. If one of the operands is true, then the condition becomes true.|`[ $a -lt 20 -o $b -gt 100 ]` is true.|
+|**`-a`**|This is logical AND. If both operands are true, then the condition becomes true; otherwise, it is false.|`[ $a -lt 20 -a $b -gt 100 ]` is false.|
+
+### String Operators
+
+The following string operators are supported by Bourne Shell.
+
+Assume variable `a` holds `"abc"` and variable `b` holds `"efg"` then:
+
+| Operator      | Description                           | Example                         |
+| --------------| --------------------------------------| --------------------------------|
+|**`=`**|Checks if the value of two operands are equal; if yes, then the condition becomes true.| `[ $a = $b ]` is not true.|
+|**`!=`**|Checks if the value of two operands are not equal; if values are not equal, then the condition becomes true.|`[ $a != $b ]` is true.|
+|**`-z`**|Checks if the given string operand size is zero; if it is zero length, then it returns true.|`[ -z $a ]` is not true.|
+|**`-n`**|Checks if the given string operand size is non-zero; if it is non-zero length, then it returns true.|`[ -n $a ]` is not false.|
+|**`str`**|Checks if `str` is not an empty string; if it is empty, then it returns false.|`[ $a ]` is not false.|
