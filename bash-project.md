@@ -356,3 +356,61 @@ Assume variable `a` holds `"abc"` and variable `b` holds `"efg"` then:
 |**`-z`**|Checks if the given string operand size is zero; if it is zero length, then it returns true.|`[ -z $a ]` is not true.|
 |**`-n`**|Checks if the given string operand size is non-zero; if it is non-zero length, then it returns true.|`[ -n $a ]` is not false.|
 |**`str`**|Checks if `str` is not an empty string; if it is empty, then it returns false.|`[ $a ]` is not false.|
+
+## Shell Decision Making
+
+Let us understand shell decision-making in Unix. While writing a shell script, there may be a situation when you need to adopt one path out of the given two paths. So you need to make use of conditional statements that allow your program to make correct decisions and perform the right actions.
+
+Unix Shell supports conditional statements which are used to perform different actions based on different conditions. We will now understand two decision-making statements here:
+```
+if....else statement
+```
+
+### The if...else statements
+
+If else statements are useful decision-making statements which can be used to select an option from a given set of options.
+
+Unix Shell supports following forms of **`if…else`** statement
+
+    if...fi statement
+    if...else...fi statement
+    if...elif...else...fi statement
+
+Most of the if statements check relations using relational operators discussed in the previous section.
+
+**Example 1**
+```
+#!/bin/bash
+
+# Prompt the user for their age
+echo "Please enter your age:"
+read age
+
+# Check if the age is greater than or equal to 18
+if [ "$age" -ge 18 ]; then
+  echo "You are an adult."
+else
+  echo "You are a minor."
+fi
+```
+**Example 2**
+```
+#!/bin/bash
+
+# Prompt the user to enter two numbers
+echo "Please enter the first number:"
+read num1
+echo "Please enter the second number:"
+read num2
+
+# Check if num1 is greater than num2
+if ((num1 > num2)); then
+  echo "$num1 is greater than $num2."
+elif ((num1 < num2)); then
+  echo "$num1 is less than $num2."
+else
+  echo "$num1 is equal to $num2."
+fi
+```
+
+
