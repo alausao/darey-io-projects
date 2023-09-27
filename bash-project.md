@@ -539,4 +539,89 @@ echo "The square of $number is $square."
 ```bash
 The square of 5 is 25.
 ```
+## Variable Substitution in Bash
+
+Variable substitution in Bash scripting allows you to replace a variable with its value. Bash provides several methods for variable substitution, making it flexible for incorporating variable values into strings or commands.
+
+### 1. Basic Variable Substitution
+
+You can access the value of a variable by prefixing the variable name with a dollar sign (`$`). For example, if `name="Alice"`, then `$name` will be replaced with "Alice" in your script.
+
+### 2. String Concatenation
+
+Variables can be concatenated with strings using the `${}` syntax. For example, `${name}'s birthday is on ${birthdate}` allows you to create a string with variable values.
+
+### 3. Default Value
+
+You can provide a default value for a variable using `${variable:-default}`. If `variable` is not set or is null, it will use the `default` value. For example, `${city:-Unknown}` will use "Unknown" if `city` is not defined.
+
+### 4. Null or Unset Check
+
+You can check if a variable is unset or null using `${variable}`. If it's null or unset, this expression evaluates to an empty string.
+
+**Example 1: Basic Variable Substitution:**
+
+```bash
+#!/bin/bash
+
+# Define a variable
+name="Alice"
+
+# Use variable substitution to greet the user
+echo "Hello, $name! Welcome to our website."
+```
+In this script, we use basic variable substitution to include the value of the `name` variable within a greeting message.
+
+**Example 2: Default Value and Null Check:**
+
+```bash
+#!/bin/bash
+
+# Check if a variable is set or provide a default value
+city="New York"
+echo "You are from \${city:-Unknown}"
+
+# Check if an unset variable is set or provide a default value
+unset country
+echo "You are from \${country:-Unknown}"
+```
+In this script, we demonstrate both default value and null/unset variable checks. We use `\${city:-Unknown}` to check if the `city` variable is set, and if not, it defaults to "Unknown." Similarly, `\${country:-Unknown}` checks for an unset variable and provides a default value of "Unknown."
+
+## Quoting in Shell Scripting
+
+Quoting is an essential concept in shell scripting that allows you to control how the shell interprets special characters and spaces within strings. It ensures that text is treated as literal and prevents unexpected behavior in commands. There are three primary types of quoting in shell scripting: single quotes, double quotes, and backslashes.
+
+### 1. Single Quotes (`'`)
+
+- Enclosed within single quotes, all characters are treated as literal, and no variable or command substitution takes place.
+
+**Example:**
+```bash
+#!/bin/bash
+USER="Alice"
+message='Hello $USER'
+echo "$message"  # Output: Hello $USER
+```
+### 2. Double Quotes (`"`)
+- Double quotes allow variable and command substitution to occur within the string, while still preserving spaces and most special characters.
+
+**Example:**
+```bash
+#!/bin/bash
+
+name="Alice"
+greeting="Hello, $name!"
+echo "$greeting"  # Output: Hello, Alice!
+```
+### 3. Backslashes (`\`)
+
+- Backslashes are used to escape special characters within double-quoted strings, preventing their interpretation as commands or special characters.
+
+**Example:**
+```bash
+#!/bin/bash
+
+echo "This is a \"quote\" inside double quotes."  # Output: This is a "quote" inside double quotes.
+```
+Quoting is a fundamental aspect of shell scripting that allows you to control how the shell interprets and processes strings. Whether you need to preserve spaces, include variables, or escape special characters, using the appropriate quoting style is crucial for writing robust and reliable shell scripts.
 
