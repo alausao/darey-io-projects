@@ -379,7 +379,7 @@ Unix Shell supports following forms of **`if…else`** statement
 Most of the if statements check relations using relational operators discussed in the previous section.
 
 **Example 1**
-```
+```bash
 #!/bin/bash
 
 # Prompt the user for their age
@@ -394,7 +394,7 @@ else
 fi
 ```
 **Example 2**
-```
+```bash
 #!/bin/bash
 
 # Prompt the user to enter two numbers
@@ -449,7 +449,9 @@ Number: 5
 ```
 You can use `for` loops in Bash to automate tasks that involve iterating over a set of items, like processing files, generating sequences, or performing repetitive actions on a list of elements.
 
-A while loop in Bash is used to repeatedly execute a block of commands as long as a specified condition is true. It continues execution until the condition becomes false. If the condition is initially false, the loop's commands may never execute.
+#### While loop
+
+A `while` loop in Bash is used to repeatedly execute a block of commands as long as a specified condition is true. It continues execution until the condition becomes false. If the condition is initially false, the loop's commands may never execute.
 
 **`Syntax:`**
 ```bash
