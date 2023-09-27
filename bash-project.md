@@ -187,3 +187,4 @@ The above command writes the `PID` of the current shell
 | 6.  | `$?` - The exit status of the last command executed. |
 | 7.  | `$$` - The process number of the current shell. For shell scripts, | 
 |     |        this is the process ID under which they are executing. |
+| 8.  | `$!` - The process number of the last background command. |
