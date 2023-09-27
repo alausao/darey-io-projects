@@ -484,6 +484,59 @@ Count: 3
 Count: 4
 Count: 5
 ```
+## Command Substitution in BASH
 
+**Command substitution** in Bash scripting is a mechanism that allows you to capture the output of a command and use it as part of another command or assign it to a variable. It provides a way to dynamically incorporate the results of one command into another.
 
+There are two common ways to perform command substitution in Bash:
+
+1. **Using Backticks `(``)`** You can enclose the command you want to execute within backticks (`` ` ``) to capture its output. For example:
+
+    ```bash
+    current_date=`date`
+    echo "The current date is: $current_date"
+    ```
+
+   Here, the `date` command is executed, and its output (the current date and time) is stored in the `current_date` variable.
+
+2. **Using `$()` (dollar-parentheses):** You can also use the `$()` syntax to achieve command substitution. It has the advantage of being more readable and allows for nesting. For example:
+
+    ```bash
+    current_date=$(date)
+    echo "The current date is: $current_date"
+    ```
+
+   This accomplishes the same result as the previous example but with a more modern and preferred syntax.
+
+Command substitution is useful when you need to use the result of one command as an argument or parameter for another command, or when you want to store the output of a command in a variable for further processing within your script.
+
+**Example 1**
+```bash
+#!/bin/bash
+
+# Capture the current username using the `whoami` command
+current_user=`whoami`
+
+# Print a greeting message with the captured username
+echo "Hello, $current_user! You are currently logged in as $(whoami)."
+```
+**`output`**
+```bash
+Hello, root! You are currently logged in as root
+```
+**Example 2**
+```bash
+#!/bin/bash
+
+# Calculate the square of a number using command substitution
+number=5
+square=$(echo "$number * $number" | bc)
+
+# Print the result
+echo "The square of $number is $square."
+```
+**`output`**
+```bash
+The square of 5 is 25.
+```
 
