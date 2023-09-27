@@ -184,3 +184,6 @@ The above command writes the `PID` of the current shell
 | 5.  | `$@` - All the arguments are individually double quoted. |
 |     |        If a script receives two arguments, `$@` |
 |     |        is equivalent to `$1` `$2.`|
+| 6.  | `$?` - The exit status of the last command executed. |
+| 7.  | `$$` - The process number of the current shell. For shell scripts, | 
+|     |        this is the process ID under which they are executing. |
