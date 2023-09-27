@@ -268,3 +268,35 @@ The above example will generate the following result:
 First Method: Zara Qadir Mahnaz Ayan Daisy
 Second Method: Zara Qadir Mahnaz Ayan Daisy
 ```
+
+## Shell Basic Operators
+
+There are various operators supported by each shell. We will discuss in detail about Bourne shell (default shell) in this section.
+
+The following operators will be discussed:
+
+    Arithmetic Operators
+    Relational Operators
+    Boolean Operators
+    String Operators
+    File Test Operators
+
+Bourne shell didn't originally have any mechanism to perform simple arithmetic operations but it uses external programs, either `awk` or `expr`
+
+The following example shows how to add two numbers:
+```
+#!/bin/sh
+
+val=`expr 2 + 2`
+echo "Total value : $val"
+```
+The above script will generate the following result:
+```
+Total value : 4
+```
+The following points need to be considered while adding:
+```
+    There must be spaces between operators and expressions. For example, 2+2 is not correct; it should be written as 2 + 2.
+
+    The complete expression should be enclosed between ‘ ‘, called the backtick.
+```
