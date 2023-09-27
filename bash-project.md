@@ -315,4 +315,19 @@ Assume variable a holds **`10`** and variable b holds **`20`** then
 |**`==`** (Equality)|Compares two numbers, if both are the same then returns true|`[ $a == $b ]` would return false|
 |**`!=`** (Not Equality)|Compares two numbers, if both are different then returns true|`[ $a != $b ]` would return true.|
 
+### Relational Operators
 
+Bourne Shell supports the following relational operators that are specific to numeric values. These operators do not work for string values unless their value is numeric.
+
+For example, following operators will work to check a relation between `10` and `20` as well as in between `"10"` and `"20"` but not in between `"ten"` and `"twenty"`.
+
+Assume variable `a` holds **`10`** and variable `b` holds **`20`** then:
+
+| Operator      | Description                           | Example                         |
+| --------------| --------------------------------------| --------------------------------|
+|**`-eq`**|Checks if the value of two operands are equal; if yes, then the condition becomes true| `[ $a -eq $b ]` is not true.|
+|**`-ne`**|Checks if the value of two operands are not equal; if values are not equal, then the condition becomes true.|`[ $a -ne $b ]` is true.|
+|**`-gt`**|Checks if the value of the left operand is greater than the value of the right operand; if yes, then the condition becomes true.|`[ $a -gt $b ]` is not true.|
+|**`-lt`**|Checks if the value of the left operand is less than the value of the right operand; if yes, then the condition becomes true.|`[ $a -lt $b ]` is true.|
+|**`-ge`**|Checks if the value of the left operand is greater than or equal to the value of the right operand; if yes, then the condition becomes true.|`[ $a -ge $b ]` is not true.|
+|**`-le`**|Checks if the value of the left operand is less than or equal to the value of the right operand; if yes, then the condition becomes true.|`[ $a -le $b ]` is true.|
