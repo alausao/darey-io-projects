@@ -23,12 +23,12 @@ There are different types of shells available in Linux Operating Systems. Some o
 
 To know, which shell types your operating system supports, type the command into the terminal as given below:
 
-```
+```bash
 cat /etc/shells
 ```
 
 **`output`**
-```
+```bash
 # /etc/shells: valid login shells
 /bin/sh
 /bin/bash
@@ -54,7 +54,7 @@ cat /etc/shells
 
 The prompt, `$`, which is called the `command prompt`, is issued by the shell. While the prompt is displayed, you can type a command. Shell reads your input after you press `Enter`. It determines the command you want executed by looking at the first word of your input. A word is an unbroken set of characters. Spaces and tabs separate words. Following is a simple example of the `date` command, which displays the current date and time −
 
-```
+```bash
 Tue Sep 26 13:34:01 UTC 2023
 ```
 
@@ -62,14 +62,14 @@ The basic concept of a shell script is a list of commands, which are listed in t
 
 Assume we create a `test.sh` script. Note all the scripts would have the `.sh` extension. Before you add anything else to your script, you need to alert the system that a shell script is being started. This is done using the `shebang` construct. For example
 
-```
+```bash
 #!/bin/sh
 ```
 This tells the system that the commands that follow are to be executed by the Bourne shell. It's called a shebang because the `#` symbol is called a `hash`, and the `!` symbol is called a `bang`
 
 To create a script containing these commands, you put the shebang line first and then add the commands
 
-```
+```bash
 #!/bin/bash
 pwd
 ls
@@ -77,7 +77,7 @@ ls
 ### Shell Comments
 
 You can put your comments in your script as follows
-```
+```bash
 #!/bin/bash
 
 # Author : OLUWASEUN
@@ -89,15 +89,15 @@ ls
 
 Save the above content and make the script executable.
 
-```
+```bash
 chmod +x test.sh
 ```
 The shell script is now ready to be executed
-```
+```bash
 ./test.sh
 ```
 Upon execution, you will receive the following result
-```
+```bash
 /root
 health.sh 
 ```
@@ -114,14 +114,14 @@ The name of a variable can contain only letters (a to z or A to Z), numbers ( 0 
 By convention, Unix shell variables will have their names in UPPERCASE.
 
 The following examples are valid variable names:
-```
+```bash
 _ALI
 TOKEN_A
 VAR_1
 VAR_2
 ```
 Following are the examples of invalid variable names:
-```
+```bash
 2_VAR
 -VARIABLE
 VAR1-VAR2
@@ -132,11 +132,11 @@ The reason you cannot use other characters such as `!`, `*`, or `-` is that thes
 ### Defining Variables
 
 Variables are defined as follows:
-```
+```bash
 variable_name=variable_value
 ```
 For example:
-```
+```bash
 NAME="DevOps"
 ```
 The above example defines the variable `NAME` and assigns the value `"DevOps"` to it.
@@ -144,7 +144,7 @@ The above example defines the variable `NAME` and assigns the value `"DevOps"` t
 ### Accessing Values
 
 To access the value stored in a variable, prefix its name with the dollar sign `($)`
-```
+```bash
 echo $NAME
 DevOps
 ```
@@ -163,11 +163,11 @@ We will discuss in detail about special variable in Unix. Before now we understo
 
 For example, the `$` character represents the `process ID number`, or `PID`, of the current shell.
 
-```
+```bash
 echo $$
 ```
 The above command writes the `PID` of the current shell
-```
+```bash
 969
 ```
 | No. | Variable & Description                                  |
@@ -198,7 +198,7 @@ The `$?` variable represents the exit status of the previous command. Exit statu
 Shell supports a different type of variable called an **array variable**. This can hold multiple values at the same time. Arrays provide a method of grouping a set of variables. Instead of creating a new name for each variable that is required, you can use a single array variable that stores all the other variables.
 
 Suppose you are trying to represent the names of various students as a set of variables. Each of the individual variables is a scalar variable as follows:
-```
+```bash
 NAME01="Zara"
 NAME02="Qadir"
 NAME03="Mahnaz"
@@ -206,11 +206,11 @@ NAME04="Ayan"
 NAME05="Daisy"
 ```
 We can use a single array to store all the above mentioned names. Following is the simplest method of creating an array variable. This helps assign a value to one of its indices.
-```
+```bash
 array_name[index]=value
 ```
 Here array_name is the name of the array, index is the index of the item in the array that you want to set, and value is the value you want to set for that item. As an example, the following commands:
-```
+```bash
 NAME[0]="Zara"
 NAME[1]="Qadir"
 NAME[2]="Mahnaz"
@@ -219,17 +219,17 @@ NAME[4]="Daisy"
 ```
 
 If you are using the `bash` shell, here is the syntax of array initialization:
-```
+```bash
 array_name=(value1 ... valuen)
 ```
 ### Accessing Array Values
 
 After you have set any array variable, you access it as follows:
-```
+```bash
 ${array_name[index]}
 ```
 Here array_name is the name of the array, and index is the index of the value to be accessed. Following is an example to understand the concept:
-```
+```bash
 #!/bin/sh
 
 NAME[0]="Zara"
@@ -242,17 +242,17 @@ echo "Second Index: ${NAME[1]}"
 ```
 
 The above example will generate the following result:
-```
+```bash
 First Index: Zara
 Second Index: Qadir
 ```
 You can access all the items in an array in one of the following ways:
-```
+```bash
 ${array_name[*]}
 ${array_name[@]}
 ```
 Here array_name is the name of the array you are interested in. Following example will help you understand the concept:
-```
+```bash
 #!/bin/sh
 
 NAME[0]="Zara"
@@ -264,7 +264,7 @@ echo "First Method: ${NAME[*]}"
 echo "Second Method: ${NAME[@]}"
 ```
 The above example will generate the following result:
-```
+```bash
 First Method: Zara Qadir Mahnaz Ayan Daisy
 Second Method: Zara Qadir Mahnaz Ayan Daisy
 ```
@@ -283,14 +283,14 @@ The following operators will be discussed:
 Bourne shell didn't originally have any mechanism to perform simple arithmetic operations but it uses external programs, either `awk` or `expr`
 
 The following example shows how to add two numbers:
-```
+```bash
 #!/bin/sh
 
 val=`expr 2 + 2`
 echo "Total value : $val"
 ```
 The above script will generate the following result:
-```
+```bash
 Total value : 4
 ```
 The following points need to be considered while adding:
@@ -669,10 +669,10 @@ done < input.txt
 ```
 In this script, we redirect standard input (`stdin`) from a file named `input.txt`. The `while` loop reads each line from the file and processes it, demonstrating input redirection. Input and output redirection are essential for controlling the flow of data in shell scripts. They allow you to work with files, handle errors, and process input efficiently, making your scripts more versatile and powerful.
 
-**💡Side Hustle Task ⏰**
+## **💡Side Hustle Task ⏰**
 
 ### Summarize the Bash Script Below
-```bash
+```shell
 #!/bin/bash
 
 source_file="example.txt"
